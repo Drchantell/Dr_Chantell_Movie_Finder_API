@@ -14,9 +14,11 @@ npm install
 
 This installs Express, Axios, and dotenv from my `package.json` file.
 
-## 3. Add My Private API Key
+## 3. Create My Private `.env` File
 
-I request a free API key from [OMDb](https://www.omdbapi.com/apikey.aspx). I open the `.env` file and add my key without spaces or quotation marks:
+GitHub does not download my private `.env` file because `.gitignore` protects it. In VS Code, I copy `.env.example`, paste the copy in the main project folder, and rename the copy `.env`.
+
+I request and activate a free API key from [OMDb](https://www.omdbapi.com/apikey.aspx). I open my new `.env` file and replace the placeholder with my real key. I do not use spaces, quotation marks, or angle brackets:
 
 ```env
 OMDB_API_KEY=my_real_key_goes_here
@@ -24,6 +26,8 @@ PORT=3001
 ```
 
 I never paste my real key into `.env.example`, my source code, GitHub, or a class submission message. My `.gitignore` protects `.env` from being uploaded.
+
+If I receive `{"error":"Invalid API key!"}`, I check that I activated the key from the OMDb email, copied it correctly, saved `.env`, and restarted the server.
 
 ## 4. Start My Server
 
