@@ -1,4 +1,4 @@
- eflection
+Reflection
 
 In this project, I built a RESTful Movie Finder server with Node.js and Express. My server does not store movie information itself. Instead, it connects to the OMDb API with Axios, requests the information, and sends the results back as JSON. This helped me understand how one server can communicate with another server.
 
