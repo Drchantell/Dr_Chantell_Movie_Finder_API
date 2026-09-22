@@ -36,6 +36,7 @@ I used this checklist to confirm that my assessment meets each requirement.
 
 - [x] Both controller functions use `try...catch`.
 - [x] A failed external request returns status `500` with a clear JSON error.
+- [x] An OMDb error response returns a clear JSON error instead of appearing successful.
 
 ## Final Safety Check
 
