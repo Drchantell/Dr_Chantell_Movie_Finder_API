@@ -2,29 +2,10 @@ const axios = require("axios");
 
 const OMDB_URL = "https://www.omdbapi.com/";
 
-function getApiKey() {
-  const apiKey = process.env.OMDB_API_KEY?.trim();
-
-  if (!apiKey || apiKey === "your_key_here") {
-    return null;
-  }
-
-  return apiKey;
-}
-
-function sendOmdbError(res, error, action) {
-  const status = error.response?.status === 401 ? 502 : 500;
-  const providerError = error.response?.data?.Error;
-
-  console.error(`Movie ${action} error:`, providerError || error.message);
-  res.status(status).json({
-    error: providerError || `Unable to ${action} movies right now`,
-  });
-}
-
 // GET /api/search?title=batman
 async function searchMovies(req, res) {
   const title = req.query.title;
+  const apiKey = process.env.OMDB_API_KEY;
 
   if (!title) {
     return res.status(400).json({
@@ -32,11 +13,10 @@ async function searchMovies(req, res) {
     });
   }
 
-  const apiKey = getApiKey();
-
+  // Stop early when the private key has not been added to .env.
   if (!apiKey) {
     return res.status(500).json({
-      error: "OMDb API key is not configured",
+      error: "OMDb API key is missing. Add it to your .env file.",
     });
   }
 
@@ -48,20 +28,30 @@ async function searchMovies(req, res) {
       },
     });
 
-    res.json(response.data);
+    // OMDb reports problems inside its JSON response.
+    if (response.data.Response === "False") {
+      return res.status(400).json({
+        error: response.data.Error,
+      });
+    }
+
+    return res.json(response.data);
   } catch (error) {
-    sendOmdbError(res, error, "search for");
+    console.error("Movie search error:", error.message);
+    res.status(500).json({
+      error: "Unable to search for movies right now",
+    });
   }
 }
 
 // GET /api/movies/tt0372784
 async function getMovieDetails(req, res) {
   const movieId = req.params.id;
-  const apiKey = getApiKey();
+  const apiKey = process.env.OMDB_API_KEY;
 
   if (!apiKey) {
     return res.status(500).json({
-      error: "OMDb API key is not configured",
+      error: "OMDb API key is missing. Add it to your .env file.",
     });
   }
 
@@ -73,9 +63,18 @@ async function getMovieDetails(req, res) {
       },
     });
 
-    res.json(response.data);
+    if (response.data.Response === "False") {
+      return res.status(400).json({
+        error: response.data.Error,
+      });
+    }
+
+    return res.json(response.data);
   } catch (error) {
-    sendOmdbError(res, error, "get");
+    console.error("Movie details error:", error.message);
+    res.status(500).json({
+      error: "Unable to get movie details right now",
+    });
   }
 }
 
