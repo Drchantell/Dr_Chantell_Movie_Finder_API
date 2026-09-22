@@ -42,8 +42,8 @@ I start by opening `START_HERE.md` and following the directions one step at a ti
 
 ## My Endpoints
 
-- Movie search: `GET http://localhost:3001/api/search?title=batman`
-- Movie details: `GET http://localhost:3001/api/movies/tt0372784`
+- Movie search: `GET http://localhost:3001/api/search?title=hidden%20figures`
+- Movie details: `GET http://localhost:3001/api/movies/tt4846340`
 
 ## How I Test My Project
 
