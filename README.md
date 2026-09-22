@@ -23,6 +23,9 @@ Dr_Chantell_Movie_Finder_API/
 ├── .env.example
 ├── .gitignore
 ├── package.json
+├── package-lock.json
+├── RUBRIC_CHECKLIST.md
+├── START_HERE.md
 ├── reflection.md
 └── server.js
 ```
