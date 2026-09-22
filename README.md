@@ -1,4 +1,4 @@
-# Movie Finder RESTful API
+Movie Finder RESTful API
 
 ## About My Project
 
@@ -36,7 +36,7 @@ Dr_Chantell_Movie_Finder_API/
 └── server.js
 ```
 
-## How I Run My Project
+How I Run My Project
 
 I start by opening `START_HERE.md` and following the directions one step at a time. I install the packages with `npm install`. Then I copy `.env.example`, rename the copy `.env`, and replace the example text with my activated OMDb API key. I start the server with `npm start`.
 
@@ -50,3 +50,7 @@ I start by opening `START_HERE.md` and following the directions one step at a ti
 I can test both endpoints in my browser or in Postman. In Postman, I select `GET`, paste an endpoint into the address box, and click **Send**. A successful request returns movie information in JSON format.
 
 I also test `http://localhost:3001/api/search` without a title. My server should return a `400 Bad Request` response with a message explaining that the title is required. If my API key is missing or OMDb cannot complete the request, my server returns a clear error message instead of crashing.
+
+Author:
+Dr.Chantell McDowell
+Per Scholas Student
