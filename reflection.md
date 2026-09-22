@@ -1,4 +1,4 @@
-# Reflection
+ eflection
 
 In this project, I built a RESTful Movie Finder server with Node.js and Express. My server does not store movie information itself. Instead, it connects to the OMDb API with Axios, requests the information, and sends the results back as JSON. This helped me understand how one server can communicate with another server.
 
@@ -9,3 +9,7 @@ I also had to learn how to work with an API key. At first, an invalid or missing
 The `.env` and `.gitignore` files taught me an important security lesson. I keep my real API key in `.env`, and `.gitignore` prevents that file from being uploaded to GitHub. I can safely include `.env.example` because it only contains a placeholder.
 
 Overall, this project gave me practice with Express, routes, controllers, Axios, async functions, parameters, validation, error handling, JSON responses, and secure environment variables. I feel more comfortable reading an API URL and understanding how the request moves through my server.
+
+Author:
+Dr. Chantell McDowell
+Per Scholas Student
