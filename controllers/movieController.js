@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const OMDB_URL = "https://www.omdbapi.com/";
 
-// GET /api/search?title=batman
+// GET /api/search?title=hidden%20figures
 async function searchMovies(req, res) {
   const title = req.query.title;
   const apiKey = process.env.OMDB_API_KEY;
@@ -44,7 +44,7 @@ async function searchMovies(req, res) {
   }
 }
 
-// GET /api/movies/tt0372784
+// GET /api/movies/tt4846340
 async function getMovieDetails(req, res) {
   const movieId = req.params.id;
   const apiKey = process.env.OMDB_API_KEY;
