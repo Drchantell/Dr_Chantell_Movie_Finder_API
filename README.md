@@ -32,12 +32,7 @@ Dr_Chantell_Movie_Finder_API/
 
 ## How to Run My Project
 
-1. Open the project folder in VS Code.
-2. Open the terminal and run `npm install`.
-3. Get a free API key from [OMDb](https://www.omdbapi.com/apikey.aspx).
-4. Open `.env` and paste the key after `OMDB_API_KEY=`.
-5. Run `npm start`.
-6. Open `http://localhost:3001` in a browser.
+I begin with the instructions in `START_HERE.md`. I open the project folder in VS Code, install the packages, copy `.env.example` to a new file named `.env`, add my activated OMDb API key, and start the server. I restart the server after changing `.env` so dotenv can load the new value.
 
 ## Endpoints
 
