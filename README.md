@@ -2,11 +2,17 @@
 
 ## About My Project
 
-I built this beginner-friendly RESTful server with Node.js and Express. My server acts as a middle person between a user and the OMDb movie database. When a user searches for a movie or requests one movie by its IMDb ID, my server sends a request to OMDb with Axios and returns the movie information as JSON.
+I built a Movie Finder API using Node.js, Express, and Axios. My server connects to the OMDb API and asks it for movie information. This means I did not have to create or store my own list of movies. My server receives a request, sends it to OMDb, and returns the results as JSON.
+
+I created two endpoints. One endpoint searches for movies by title, and the other finds one movie by its IMDb ID. I also added a simple welcome page using my hot-pink, black, and lavender colors.
 
 ## What I Learned
 
-I learned how to create an Express server, organize routes and controllers into separate folders, read query parameters and route parameters, and communicate with an external API. I also learned how to protect an API key with a `.env` file and `.gitignore`. I used `try...catch` blocks so my server can return a clear error message when an external request fails.
+I learned how to build an Express server and separate my code into routes and controllers. The routes decide which controller function should run. The controller functions handle the request, contact OMDb, and send a response back to the user.
+
+I also learned the difference between a query parameter and a route parameter. I use `req.query.title` to read the movie title after the question mark in the search URL. I use `req.params.id` to read the IMDb ID that appears inside the movie-details URL.
+
+Another important lesson was protecting private information. I keep my OMDb API key in a `.env` file, and my `.gitignore` prevents that file from being uploaded to GitHub.
 
 ## Project Structure
 
@@ -30,17 +36,17 @@ Dr_Chantell_Movie_Finder_API/
 └── server.js
 ```
 
-## How to Run My Project
+## How I Run My Project
 
-I begin with the instructions in `START_HERE.md`. I open the project folder in VS Code, install the packages, copy `.env.example` to a new file named `.env`, add my activated OMDb API key, and start the server. I restart the server after changing `.env` so dotenv can load the new value.
+I start by opening `START_HERE.md` and following the directions one step at a time. I install the packages with `npm install`. Then I copy `.env.example`, rename the copy `.env`, and replace the example text with my activated OMDb API key. I start the server with `npm start`.
 
-## Endpoints
+## My Endpoints
 
-- Search: `GET http://localhost:3001/api/search?title=batman`
-- Details: `GET http://localhost:3001/api/movies/tt0372784`
+- Movie search: `GET http://localhost:3001/api/search?title=batman`
+- Movie details: `GET http://localhost:3001/api/movies/tt0372784`
 
-If I visit `/api/search` without a title, my server returns a `400 Bad Request` error. If an Axios request fails, my server returns a `500` error and a helpful JSON message.
+## How I Test My Project
 
-## Testing in Postman
+I can test both endpoints in my browser or in Postman. In Postman, I select `GET`, paste an endpoint into the address box, and click **Send**. A successful request returns movie information in JSON format.
 
-I select the `GET` method, paste either endpoint into Postman, and click **Send**. I expect the response body to contain JSON movie data. I never upload my `.env` file or API key to GitHub.
+I also test `http://localhost:3001/api/search` without a title. My server should return a `400 Bad Request` response with a message explaining that the title is required. If my API key is missing or OMDb cannot complete the request, my server returns a clear error message instead of crashing.
