@@ -44,8 +44,8 @@ When the terminal displays `Movie Finder API is running at http://localhost:3001
 I can open these addresses in a browser or send GET requests through Postman:
 
 ```text
-http://localhost:3001/api/search?title=batman
-http://localhost:3001/api/movies/tt0372784
+http://localhost:3001/api/search?title=hidden%20figures
+http://localhost:3001/api/movies/tt4846340
 ```
 
 I also test the required validation by opening:
