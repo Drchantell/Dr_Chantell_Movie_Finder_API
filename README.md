@@ -23,18 +23,16 @@ Dr_Chantell_Movie_Finder_API/
 ├── .env.example
 ├── .gitignore
 ├── package.json
+├── package-lock.json
+├── RUBRIC_CHECKLIST.md
+├── START_HERE.md
 ├── reflection.md
 └── server.js
 ```
 
 ## How to Run My Project
 
-1. Open the project folder in VS Code.
-2. Open the terminal and run `npm install`.
-3. Get a free API key from [OMDb](https://www.omdbapi.com/apikey.aspx).
-4. Open `.env` and paste the key after `OMDB_API_KEY=`.
-5. Run `npm start`.
-6. Open `http://localhost:3001` in a browser.
+I begin with the instructions in `START_HERE.md`. I open the project folder in VS Code, install the packages, add my private OMDb API key, and start the server. The instructions are written one step at a time so I can follow them as a beginning developer.
 
 ## Endpoints
 
