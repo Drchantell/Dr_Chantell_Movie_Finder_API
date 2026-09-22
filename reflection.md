@@ -1,7 +1,11 @@
 # Reflection
 
-I created a RESTful Movie Finder server that communicates with the OMDb API. The biggest idea I learned is that my server does not have to store the movie data. Instead, it receives a request, asks OMDb for the information, and returns the result to the user.
+In this project, I built a RESTful Movie Finder server with Node.js and Express. My server does not store movie information itself. Instead, it connects to the OMDb API with Axios, requests the information, and sends the results back as JSON. This helped me understand how one server can communicate with another server.
 
-One challenge was understanding the difference between a query parameter and a route parameter. I used `req.query.title` for a movie search because the title appears after the question mark in the URL. I used `req.params.id` for movie details because the IMDb ID is part of the URL path. Separating the route definitions from the controller functions also helped me understand how a larger server can stay organized.
+One part that was challenging for me was understanding the difference between a query parameter and a route parameter. I learned that the title in `/api/search?title=batman` is a query parameter, so I read it with `req.query.title`. The IMDb ID in `/api/movies/tt0372784` is part of the route, so I read it with `req.params.id`. Looking at where each value appears in the URL made the difference easier for me to understand.
 
-I also learned why the `.env` and `.gitignore` files are important. The `.env` file keeps my API key separate from my code, and `.gitignore` stops the private key and the `node_modules` folder from being uploaded to GitHub. This project gave me practice with Express, Axios, asynchronous functions, validation, JSON responses, and error handling.
+I also had to learn how to work with an API key. At first, an invalid or missing key could make the response confusing. I improved the controller so it checks for a missing key and also recognizes error messages returned by OMDb. I learned that `try...catch` handles request failures, but I still need to check the JSON response because an external API can return an error message even when the request reaches the API successfully.
+
+The `.env` and `.gitignore` files taught me an important security lesson. I keep my real API key in `.env`, and `.gitignore` prevents that file from being uploaded to GitHub. I can safely include `.env.example` because it only contains a placeholder.
+
+Overall, this project gave me practice with Express, routes, controllers, Axios, async functions, parameters, validation, error handling, JSON responses, and secure environment variables. I feel more comfortable reading an API URL and understanding how the request moves through my server.
