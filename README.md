@@ -1,18 +1,20 @@
-Movie Finder RESTful API
+# Movie Finder RESTful API
 
 ## About My Project
 
-I built a Movie Finder API using Node.js, Express, and Axios. My server connects to the OMDb API and asks it for movie information. This means I did not have to create or store my own list of movies. My server receives a request, sends it to OMDb, and returns the results as JSON.
+I built a Movie Finder API using Node.js, Express, and Axios. My server connects to the OMDb API and requests movie information instead of storing movie data inside my project. It can search for movies by title and find one movie by its IMDb ID. The results are returned as JSON.
 
-I created two endpoints. One endpoint searches for movies by title, and the other finds one movie by its IMDb ID. I also added a simple welcome page using my hot-pink, black, and lavender colors.
+I organized my project with separate route and controller files. My routes determine which function should run, and my controller functions handle the request, contact OMDb, and return a response. I also created a simple welcome page using my hot-pink, black, and lavender colors.
 
-## What I Learned
+## Complications I Had
 
-I learned how to build an Express server and separate my code into routes and controllers. The routes decide which controller function should run. The controller functions handle the request, contact OMDb, and send a response back to the user.
+The biggest complication I had was getting the OMDb API key to work. My server started correctly, but OMDb returned a `401` response because it did not accept the key. This taught me that a running Express server does not always mean an external API request will be successful. I had to check the response from OMDb separately from checking whether my own server was running.
 
-I also learned the difference between a query parameter and a route parameter. I use `req.query.title` to read the movie title after the question mark in the search URL. I use `req.params.id` to read the IMDb ID that appears inside the movie-details URL.
+I also had to make sure my key was stored in the correct `.env` file instead of `.env.example`. After changing `.env`, I needed to stop and restart my server so dotenv could load the updated value. I kept the real key out of GitHub by listing `.env` in `.gitignore`.
 
-Another important lesson was protecting private information. I keep my OMDb API key in a `.env` file, and my `.gitignore` prevents that file from being uploaded to GitHub.
+Another challenge was understanding the two types of parameters. I use `req.query.title` for a movie title because it appears after the question mark in the search URL. I use `req.params.id` for an IMDb ID because it is part of the URL path. I also learned that spaces in a movie title can appear as `%20` in a URL.
+
+OMDb can report an error in two ways. It can return an HTTP error such as `401`, or it can return JSON with `"Response": "False"`. I updated my controller to handle both situations and return a clear message instead of allowing the application to crash.
 
 ## Project Structure
 
@@ -30,15 +32,14 @@ Dr_Chantell_Movie_Finder_API/
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
-├── RUBRIC_CHECKLIST.md
 ├── START_HERE.md
 ├── reflection.md
 └── server.js
 ```
 
-How I Run My Project
+## How I Run My Project
 
-I start by opening `START_HERE.md` and following the directions one step at a time. I install the packages with `npm install`. Then I copy `.env.example`, rename the copy `.env`, and replace the example text with my activated OMDb API key. I start the server with `npm start`.
+I open the project in VS Code and run `npm install`. I copy `.env.example`, rename the copy `.env`, and replace the placeholder with my activated OMDb key. I start the server with `npm start`. When I change `.env`, I restart the server.
 
 ## My Endpoints
 
@@ -47,10 +48,4 @@ I start by opening `START_HERE.md` and following the directions one step at a ti
 
 ## How I Test My Project
 
-I can test both endpoints in my browser or in Postman. In Postman, I select `GET`, paste an endpoint into the address box, and click **Send**. A successful request returns movie information in JSON format.
-
-I also test `http://localhost:3001/api/search` without a title. My server should return a `400 Bad Request` response with a message explaining that the title is required. If my API key is missing or OMDb cannot complete the request, my server returns a clear error message instead of crashing.
-
-Author:
-Dr.Chantell McDowell
-Per Scholas Student
+I can test my endpoints in a browser or Postman. I also test `/api/search` without a title to make sure it returns a `400 Bad Request`. I check missing and invalid API-key responses to make sure the server returns a helpful JSON message instead of stopping.
