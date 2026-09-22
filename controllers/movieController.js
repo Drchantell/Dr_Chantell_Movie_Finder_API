@@ -5,7 +5,7 @@ const OMDB_URL = "https://www.omdbapi.com/";
 // GET /api/search?title=hidden%20figures
 async function searchMovies(req, res) {
   const title = req.query.title;
-  const apiKey = process.env.OMDB_API_KEY;
+  const apiKey = process.env.OMDB_API_KEY?.trim();
 
   if (!title) {
     return res.status(400).json({
@@ -38,6 +38,11 @@ async function searchMovies(req, res) {
     return res.json(response.data);
   } catch (error) {
     console.error("Movie search error:", error.message);
+    if (error.response?.status === 401) {
+      return res.status(502).json({
+        error: "Invalid OMDb API key. Replace OMDB_API_KEY in .env and restart the server.",
+      });
+    }
     res.status(500).json({
       error: "Unable to search for movies right now",
     });
@@ -47,7 +52,7 @@ async function searchMovies(req, res) {
 // GET /api/movies/tt4846340
 async function getMovieDetails(req, res) {
   const movieId = req.params.id;
-  const apiKey = process.env.OMDB_API_KEY;
+  const apiKey = process.env.OMDB_API_KEY?.trim();
 
   if (!apiKey) {
     return res.status(500).json({
@@ -72,6 +77,11 @@ async function getMovieDetails(req, res) {
     return res.json(response.data);
   } catch (error) {
     console.error("Movie details error:", error.message);
+    if (error.response?.status === 401) {
+      return res.status(502).json({
+        error: "Invalid OMDb API key. Replace OMDB_API_KEY in .env and restart the server.",
+      });
+    }
     res.status(500).json({
       error: "Unable to get movie details right now",
     });
