@@ -49,3 +49,8 @@ I open the project in VS Code and run `npm install`. I copy `.env.example`, rena
 ## How I Test My Project
 
 I can test my endpoints in a browser or Postman. I also test `/api/search` without a title to make sure it returns a `400 Bad Request`. I check missing and invalid API-key responses to make sure the server returns a helpful JSON message instead of stopping.
+
+
+Author:
+Dr. Chantell McDowell 
+Per Scholas Student 
